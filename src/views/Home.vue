@@ -18,7 +18,7 @@
           <v-window-item value="Dashboard"> <dashboard /> </v-window-item>
           <v-window-item value="Track Expenses"> <expenses /></v-window-item>
           <v-window-item value="Reports"> 3 </v-window-item>
-          <v-window-item value="Tools"> 4 </v-window-item>
+          <v-window-item value="Tools"> <tools /></v-window-item>
         </v-window>
       </v-card-text>
     </v-card>
@@ -29,6 +29,7 @@
 import { ref } from "vue";
 import dashboard from "../components/dashboard.vue";
 import expenses from "../components/expenses.vue";
+import tools from "../components/tools.vue";
 
 const categories = ["Dashboard", "Track Expenses", "Reports", "Tools"];
 

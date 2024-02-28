@@ -3,7 +3,8 @@
     <v-row
       ><v-col cols="12" md="3">
         <v-select
-          :items="items"
+          v-model="month"
+          :items="months"
           density="compact"
           label="Month"
           variant="solo"
@@ -18,7 +19,8 @@
         ></v-select> </v-col
       ><v-col cols="12" md="3">
         <v-select
-          :items="items"
+          v-model="year"
+          :items="years"
           density="compact"
           label="Year"
           variant="solo"
@@ -74,7 +76,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { Chart, Grid, Bar, Marker, Tooltip } from "vue3-charts";
-import { useExpenseStore } from "@/store/expense-store";
+import { useExpenseStore } from "@/store/expense";
 import moment from "moment";
 
 const expenseStore = useExpenseStore();
@@ -82,7 +84,7 @@ const expenseStore = useExpenseStore();
 // Define reactive reference for data
 const data = ref([]);
 
-const items = [
+const months = [
   "January",
   "February",
   "March",
@@ -96,6 +98,11 @@ const items = [
   "November",
   "December",
 ];
+
+const month = ref("");
+const year = ref("");
+
+const years = [2022, 2023, 2024];
 // Define reactive reference for direction
 const direction = ref("horizontal");
 
@@ -121,16 +128,7 @@ const axis = ref({
 
 onMounted(async () => {
   await expenseStore.getExpenses();
+  data.value = expenseStore.expenses;
   console.log(expenseStore.expenses);
-
-  expenseStore.expenses.forEach((e) => {
-    const { amount, date } = e;
-    // Format the date using Moment.js
-    const formattedDate = moment(date).format("Do MMMM YYYY");
-    // Push the formatted data to the reactive reference
-    data.value.push({ amount, date: formattedDate });
-  });
-
-  console.log(await expenseStore.getExpensesByMonthYear("December", 2023'));
 });
 </script>

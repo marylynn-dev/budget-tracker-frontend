@@ -1,6 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia'
-import { get } from '@/services/api'
+import { get } from '@/services/apis/api'
 
 export const useExpenseStore = defineStore('expenseStore', {
   state: () => ({
@@ -19,11 +19,6 @@ export const useExpenseStore = defineStore('expenseStore', {
     }
   },
   getters: {
-    getExpensesByMonthYear(state, { month, year }) {
-      return state.expenses.filter(expense => {
-        const expenseDate = new Date(expense.date);
-        return expenseDate.getMonth() === month - 1 && expenseDate.getFullYear() === year; // Month index starts from 0
-      });
-    },
+
   }
 })
