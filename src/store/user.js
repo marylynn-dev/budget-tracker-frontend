@@ -10,11 +10,7 @@ export const useUserStore = defineStore('expenseStore', {
     //define actions for the store
     actions: {
         async login(email, password) {
-            try {
-                this.user = await login(email, password)
-            } catch (err) {
-                console.log(err)
-            }
+            this.user = await login(email, password)
         }
     },
     getters: {

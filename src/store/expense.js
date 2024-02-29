@@ -12,7 +12,6 @@ export const useExpenseStore = defineStore('expenseStore', {
     async getExpenses() {
       try {
         this.expenses = await get()
-        console.log(this.expenses)
       } catch (err) {
         console.log(err)
       }
