@@ -1,12 +1,47 @@
 <template>
-  <v-container>
-    <v-row
-      ><v-col cols="12" md="6"
-        ><v-btn color="primary" class="mx-2">Add Expenses</v-btn>
-        <v-btn color="primary" class="mx-2">Add Budget</v-btn>
-        <v-btn color="primary" class="mx-2">Add Category </v-btn></v-col
-      ></v-row
-    ></v-container
-  >
+  <div>
+    <v-card>
+      <v-tabs v-model="tab" color="primary">
+        <v-tab v-for="category in categories" :key="category" :value="category">
+          {{ category }}
+        </v-tab>
+      </v-tabs>
+
+      <v-card-text>
+        <v-window v-model="tab">
+          <v-window-item value="expenses">
+            <expenses />
+          </v-window-item>
+          <v-window-item value="budget">
+            <budget />
+          </v-window-item>
+          <v-window-item value="category">
+            <category />
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
-<script setup></script>
+
+<script setup>
+import expenses from "./add-expense.vue";
+import budget from "./add-budget.vue";
+import category from "./add-category.vue";
+
+import axios from "axios";
+import { onMounted, ref } from "vue";
+
+const categories = ["expenses", "budget", "category"];
+
+let tab = ref(categories[0]); // Set the default tab
+
+onMounted(() => {
+  axios
+    .get("http://localhost:1573/vote")
+    .then((response) => {})
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+</script>

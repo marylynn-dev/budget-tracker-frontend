@@ -27,3 +27,18 @@ export const login = async (email, password) => {
 
     }
 }
+
+export const getUser = async (token) => {
+    try {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const res = await axios.get(`http://localhost:3001/auth`, config);
+        return res.data.data;
+    } catch (err) {
+        console.log(err.response);
+        throw err; // Rethrow the error to handle it outside of this function if needed
+    }
+};

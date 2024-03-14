@@ -1,6 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia'
-import { get } from '@/services/apis/api'
+import { get } from '@/services/expense-apis/expense'
 
 export const useExpenseStore = defineStore('expenseStore', {
   state: () => ({

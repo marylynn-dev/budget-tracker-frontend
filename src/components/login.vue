@@ -58,10 +58,6 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-const userStore = useUserStore();
-
-const tab = ref("Login");
-
 const form = ref(false);
 const email = ref(null);
 const password = ref(null);
@@ -70,11 +66,20 @@ const loading = ref(false);
 const login = async (email, password) => {
   try {
     loading.value = true;
-    await axios.post("http://localhost:3001/auth/log-in", {
-      email,
-      password,
-    });
-    router.push("/home");
+    const res = await axios.post(
+      "http://localhost:3001/auth/log-in",
+      {
+        email,
+        password,
+      },
+      {
+        mode: "cors", // Setting the CORS mode
+        credentials: "include", // Including credentials (cookies) with the request
+      }
+    );
+    const accessToken = res.data.accessToken;
+    localStorage.setItem("accessToken", accessToken);
+    router.push({ name: "Home" });
   } catch (error) {
     if (error.response) {
       Swal.fire({

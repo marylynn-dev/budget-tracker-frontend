@@ -71,14 +71,16 @@ const password = ref(null);
 const name = ref(null);
 const loading = ref(false);
 
-const login = async (email, password, name) => {
+const signup = async (email, password, name) => {
   try {
     loading.value = true;
-    await axios.post("http://localhost:3001/auth/register", {
+    const res = await axios.post("http://localhost:3001/auth/register", {
       email,
       password,
       name,
     });
+    const accessToken = res.data.accessToken;
+    localStorage.setItem("accessToken", accessToken);
     router.push("/home");
   } catch (error) {
     if (error.response) {
@@ -103,7 +105,7 @@ const login = async (email, password, name) => {
 const onSubmit = async () => {
   if (!form.value) return;
 
-  login(email.value, password.value, name.value);
+  signup(email.value, password.value, name.value);
 };
 
 const required = (v) => {
