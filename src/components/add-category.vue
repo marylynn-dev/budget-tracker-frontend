@@ -30,7 +30,7 @@
 import { ref } from "vue";
 
 // Project imports
-import { create } from "@/services/category apis/category";
+import { create } from "../services/category";
 
 // Data
 const title = ref("");

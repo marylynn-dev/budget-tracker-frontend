@@ -1,7 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2'
 
-
 // Function to create a category
 export const create = async (title) => {
     try {
@@ -32,6 +31,46 @@ export const create = async (title) => {
         }
     } catch (err) {
         let errorMessage = 'Something went wrong';
+        if (err.response) {
+            const { status, data } = err.response;
+            errorMessage = `${data.message}`; // Use specific error message from response, or provide a default
+        } else if (err.request) {
+            // Network or request-level error
+            errorMessage = 'Network error or request issue';
+        } else {
+            // Other errors (e.g., missing token)
+            errorMessage = err.message;
+        }
+
+        Swal.fire({
+            title: errorMessage,
+            icon: 'error',
+            confirmButtonColor: '#00cd96',
+        });
+    }
+};
+
+// Function to get users categories
+export const get = async (title) => {
+    try {
+        const token = localStorage.getItem("accessToken");
+
+        if (!token) {
+            throw new Error("Unaothorized! Try logging in Again");
+        }
+
+        const res = await axios.get(
+            'http://localhost:3001/category/one-user',
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        console.log(res.data.data)
+        return res.data.data
+    } catch (err) {
+        let errorMessage = "Couldn't get categories";
         if (err.response) {
             const { status, data } = err.response;
             errorMessage = `${data.message}`; // Use specific error message from response, or provide a default

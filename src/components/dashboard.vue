@@ -10,8 +10,13 @@
           <v-card variant="outlined" rounded="0">
             <v-card-text>
               <v-row class="d-flex justify-space-between">
-                <v-col><p>Budegets | View all</p></v-col>
+                <v-col><p>Budgets | View all</p></v-col>
                 <v-col class="text-right"><p>Budegets | View all</p></v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <budget />
+                </v-col>
               </v-row>
             </v-card-text>
           </v-card>
@@ -23,11 +28,12 @@
 
 <script setup>
 import transaction from "./transaction.vue";
+import budget from "./budget.vue";
 import axios from "axios";
 
 const addTransaction = async () => {
   try {
-    const res = await axios.post('')
+    const res = await axios.post("");
   } catch (err) {
     console.log(err);
   }

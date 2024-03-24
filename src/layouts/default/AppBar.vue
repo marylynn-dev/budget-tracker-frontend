@@ -24,7 +24,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { getUser } from "../../services/user-apis/user";
+import { getUser } from "../../services/user";
 
 const name = ref(null);
 
@@ -39,3 +39,4 @@ onMounted(async () => {
   }
 });
 </script>
+../../services/user

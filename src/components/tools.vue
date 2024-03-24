@@ -35,13 +35,4 @@ import { onMounted, ref } from "vue";
 const categories = ["expenses", "budget", "category"];
 
 let tab = ref(categories[0]); // Set the default tab
-
-onMounted(() => {
-  axios
-    .get("http://localhost:1573/vote")
-    .then((response) => {})
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
 </script>

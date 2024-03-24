@@ -1,6 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia'
-import { login } from "@/services/user-apis/user";
+import { login } from "@/services/user";
 
 export const useUserStore = defineStore('expenseStore', {
     state: () => ({

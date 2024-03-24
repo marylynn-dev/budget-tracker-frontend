@@ -11,6 +11,7 @@
   "dependencies": {
     "@mdi/font": "7.0.96",
     "axios": "^1.6.7",
+    "chart.js": "^4.4.2",
     "core-js": "^3.29.0",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
@@ -19,6 +20,7 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.10.6",
     "vue": "^3.2.0",
+    "vue-chartjs": "^5.3.0",
     "vue-router": "^4.0.0",
     "vue3-charts": "^1.1.33",
     "vuetify": "^3.0.0"
